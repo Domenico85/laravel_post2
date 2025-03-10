@@ -7,60 +7,103 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Laravel Posts Management System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## **Overview**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This is a Laravel-based application that allows users to create, edit, and delete posts. It includes authentication via Laravel Fortify and ensures that only the creator of a post can modify or delete it.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## **Features**
 
-## Learning Laravel
+-   **User Authentication** (Login, Logout, Profile Management)
+-   **Post Management** (Create, Read, Update, Delete)
+-   **Authorization Middleware** to restrict updates and deletions to the post owner
+-   **Database Migrations** for Posts and Profiles
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## **Installation**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### **1. Clone the Repository**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```sh
+git clone <repository_url>
+cd <repository_folder>
+```
 
-## Laravel Sponsors
+### **2. Install Dependencies**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```sh
+composer install
+npm install
+```
 
-### Premium Partners
+### **3. Configure Environment**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   Duplicate `.env.example` and rename it to `.env`
+-   Generate application key:
+    ```sh
+    php artisan key:generate
+    ```
+-   Set up database connection inside `.env` file
 
-## Contributing
+### **4. Run Migrations**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```sh
+php artisan migrate
+```
 
-## Code of Conduct
+### **5. Start the Development Server**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```sh
+php artisan serve
+```
 
-## Security Vulnerabilities
+## **Routes**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### **Public Routes**
 
-## License
+-   **Homepage**: `GET /`
+-   **View All Posts**: `GET /posts/index`
+-   **View Single Post**: `GET /posts/show/{post}`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### **Protected Routes (Require Authentication)**
+
+-   **Create Post**: `GET /post/create` & `POST /post/store`
+-   **Update Post**: `PUT /post/update/{post}` _(Restricted to post owner)_
+-   **Delete Post**: `DELETE /post/delete/{post}` _(Restricted to post owner)_
+-   **Profile Management**:
+    -   `GET /profile` (View Profile)
+    -   `GET /profile/edit` (Edit Profile)
+    -   `PUT /profile/update` (Update Profile)
+
+## **Database Schema**
+
+### **Posts Table**
+
+-   `id` (Primary Key)
+-   `title` (String)
+-   `description` (Text)
+-   `user_id` (Foreign Key referencing `users` table)
+-   `timestamps`
+
+### **Profiles Table**
+
+-   `id` (Primary Key)
+-   `user_id` (Foreign Key referencing `users` table, cascades on delete)
+-   `address` (String, nullable)
+-   `phone` (String, nullable)
+-   `avatar` (String, nullable)
+-   `timestamps`
+
+## **Technologies Used**
+
+-   **Laravel** (Framework)
+-   **Laravel Fortify** (Authentication)
+-   **MySQL** (Database)
+-   **Blade** (Templating Engine)
+-   **Bootstrap** (Frontend UI)
+
+## **License**
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+Produced by **Domenico Ciardullo**
