@@ -1,0 +1,56 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+body {
+    background-image: url(/public/img/bg.jpg);
+    background-size: cover;
+    font-family: "Playfair Display", serif;
+}
+
+.nav-custom {
+    background: rgba(255, 255, 255, 0.03);
+    /* border-radius: 16px; */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.3px);
+    -webkit-backdrop-filter: blur(1.3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover,
+.dropdown-item:hover {
+    color: red !important;
+}
+
+.custom-dropdown-toggle {
+    position: relative;
+    z-index: 2000 !important;
+}
+
+.custom-dropdown-menu {
+    z-index: 2000 !important;
+}
+
+.container {
+    margin-top: 40px;
+    color: white;
+}
+
+.card,
+.post-container {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.3px);
+    -webkit-backdrop-filter: blur(1.3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: fit-content;
+}
+
+.profile-card {
+    margin: 0 auto;
+}
